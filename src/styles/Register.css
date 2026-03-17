@@ -1,0 +1,60 @@
+.register-container {
+  width: 100%;
+  height: 100vh;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-card {
+  width: 350px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.register-card h2 {
+  text-align: center;
+  color: #111;
+}
+
+.register-card input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.register-card input:focus {
+  outline: none;
+  border-color: #facc15;
+}
+
+.register-card button {
+  padding: 10px;
+  border: none;
+  background: #facc15;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-card button:hover {
+  background: #eab308;
+}
+
+.register-card p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-card a {
+  color: blue;
+  text-decoration: none;
+}

@@ -6,9 +6,16 @@ export default function Tanks() {
   const [tanks, setTanks] = useState([]);
 
   useEffect(() => {
-    api.get("/tanks")
-      .then(res => setTanks(res.data))
-      .catch(err => console.error(err));
+    const getTanks = async () => {
+      try {
+        const res = await api.get("/tanks"); // GET /api/tanks
+        setTanks(res.data.data.items);      // <- PagedResult<TankListDto> içindən Items
+      } catch (err) {
+        console.error("Error fetching tanks:", err);
+      }
+    };
+
+    getTanks();
   }, []);
 
   return (
@@ -16,11 +23,16 @@ export default function Tanks() {
       <h2>Tanks</h2>
 
       {tanks.map(tank => (
-        <div key={tank.id}>
-          <h3>{tank.name}</h3>
-          <p>Country: {tank.country}</p>
+        <div key={tank.id}> {/* backend-də Id */}
+          <h3>{tank.name}</h3>       {/* backend-də Name */}
+          <p>Country: {tank.country}</p> {/* backend-də Country */}
+          <p>Type: {tank.type}</p>       
 
-          <Link to={`/tanks/${tank.id}`}>
+          {tank.imageUrl && (
+            <img src={tank.imageUrl} alt={tank.name} width={200} />
+          )}
+
+          <Link to={`/tank/${tank.id}`}>
             View Details
           </Link>
         </div>
