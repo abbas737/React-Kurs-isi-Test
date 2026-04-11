@@ -1,65 +1,104 @@
 import { useState } from "react";
 import { useTokens } from "../stores/TokenStore";
-import api from "../utils/axios"; // Axios baseURL: http://localhost:5177/api
-import { useNavigate, Link, replace } from "react-router-dom";
-import { useDarkmode } from "../stores/DarkModeStore";
+import api from "../utils/axios"; 
+import { useNavigate, Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 
 const Login = () => {
-  const { setAccessToken, setRefreshToken } = useTokens();
+  const { setAccessToken, setRefreshToken, setRole } = useTokens();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { isDarkmodeActive } = useDarkmode();
+
 
   const handleInputChange = (key, value) => {
     setFormData(prev => ({ ...prev, [key]: value }));
   };
 
-const handleLogin = async () => {
-    try {
-        const { data } = await api.post("/Auth/login", formData); // baseURL + endpoint
-        setAccessToken(data.accessToken);
-        setRefreshToken(data.refreshToken);
-        navigate("/", { replace: true });
-    } catch (error) {
-        console.error("Login error:", error);
-    } 
+  const handleLogin = async () => {
+  try {
+    const { data } = await api.post("/Auth/login", formData);
+
+    const accessToken = data.data.accessToken;
+    const refreshToken = data.data.refreshToken;
+
+    setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+
+    // 🔥 ROLE çıxart
+const decoded = jwtDecode(accessToken);
+console.log(decoded);
+
+const roles =
+  decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+const role = Array.isArray(roles) ? roles[0] : roles;
+
+setRole(role);
+
+   if (role === "Admin") {
+  navigate("/admin");
+} else {
+  navigate("/");
+}
+  } catch (error) {
+    console.error("Login error:", error);
+  }
 };
 
-
   return (
-    <div className={`w-full h-screen flex justify-center items-center ${
-      isDarkmodeActive ? "bg-gray-100 text-black" : "bg-slate-900 text-white"
-    }`}>
-      <div className="w-[350px] p-8 bg-white rounded-lg shadow-lg flex flex-col gap-4">
-        <h2 className="text-2xl font-bold text-center text-black">Login</h2>
+    <div className="min-h-screen flex items-center justify-center 
+    bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white px-4">
 
+      {/* 🔥 CARD */}
+      <div className="w-full max-w-md p-8 rounded-2xl 
+      bg-white/5 backdrop-blur-xl border border-white/10 
+      shadow-2xl flex flex-col gap-5">
+
+        {/* 🪖 Title */}
+        <h2 className="text-3xl font-bold text-center text-yellow-400">
+          Tank Wiki Login
+        </h2>
+
+        {/* 📧 Email */}
         <input
           type="email"
           placeholder="Email"
           value={formData.email}
           onChange={(e) => handleInputChange("email", e.target.value)}
-          className="border p-2 rounded"
+          className="p-3 rounded-xl bg-black/40 border border-white/10 
+          focus:outline-none focus:border-yellow-400 transition"
         />
 
+        {/* 🔑 Password */}
         <input
           type="password"
           placeholder="Password"
           value={formData.password}
           onChange={(e) => handleInputChange("password", e.target.value)}
-          className="border p-2 rounded"
+          className="p-3 rounded-xl bg-black/40 border border-white/10 
+          focus:outline-none focus:border-yellow-400 transition"
         />
 
+        {/* 🔐 Button */}
         <button
           onClick={handleLogin}
-          className="bg-yellow-400 text-black font-bold py-2 rounded"
+          className="mt-2 py-3 rounded-xl font-bold 
+          bg-gradient-to-r from-yellow-400 to-orange-500 
+          text-black hover:from-yellow-300 hover:to-orange-400 
+          transition shadow-lg hover:shadow-yellow-500/40"
         >
           Login
         </button>
 
-        <p className="text-center text-sm text-black">
+        {/* 🔗 Register */}
+        <p className="text-center text-sm text-gray-400">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-blue-600">Register</Link>
+          <Link to="/register" className="text-yellow-400 hover:underline">
+            Register
+          </Link>
         </p>
+
       </div>
     </div>
   );

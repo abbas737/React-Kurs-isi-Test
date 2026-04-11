@@ -1,31 +1,91 @@
 import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import api from "../utils/axios";
-import { Link } from "react-router-dom";
-import Loading from "../components/Loading";
+import { useDarkmode } from "../stores/DarkModeStore";
 
 export default function Generals() {
+  const { tankId } = useParams(); 
+  const { isDarkmodeActive } = useDarkmode();
+  const navigate = useNavigate();
+
   const [generals, setGenerals] = useState([]);
 
   useEffect(() => {
-    api.get("/generals")
-      .then(res => setGenerals(res.data))
+    if (!tankId) return;
+
+    api.get(`/General/tank/${tankId}?page=1&pageSize=10`)
+      .then(res => setGenerals(res.data.data.items))
       .catch(err => console.error(err));
-  }, []);
+  }, [tankId]);
 
   return (
-    <div>
-      <h2>Generals</h2>
+    <div
+      className={`min-h-screen px-6 py-10 ${
+        isDarkmodeActive
+          ? "bg-gray-100 text-black"
+          : "bg-linear-to-br from-slate-900 via-slate-800 to-black text-white"
+      }`}
+    >
+         <button
+        onClick={() => navigate(-1)}
+        className="absolute top-6 left-6 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 
+        hover:bg-white/10 hover:text-yellow-400 transition"
+      >
+        ← Back
+      </button>
+      
+      {/* 🔥 Title */}
+      <h2 className="text-4xl font-bold text-center mb-10">
+       Generals
+      </h2>
 
-      {generals.map(general => (
-        <div key={general.id}>
-          <h3>{general.name}</h3>
-          <p>Country: {general.country}</p>
+      {/* 💎 GRID */}
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {generals.map(g => (
+          <Link
+            key={g.id}
+            to={`/generals/${g.id}`}
+            className="group bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-103 hover:shadow-green-500/30 transition duration-300"
+          >
+            {/* 🖼 Image */}
+            <div className="h-48 bg-gray-300 overflow-hidden">
+              {g.imageUrl ? (
+                <img
+                  src={g.imageUrl}
+                  alt={g.fullName}
+                  className="object-cover w-fit h-fit group-hover:scale-103 transition duration-500"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <span>No Image</span>
+                </div>
+              )}
+            </div>
 
-          <Link to={`/generals/${general.id}`}>
-            View Details
+            {/* 📋 Info */}
+            <div className="p-4 flex flex-col gap-2">
+              <h3 className="text-lg font-bold">
+                {g.fullName}
+              </h3>
+
+              <p className="text-sm text-gray-400">
+                Age: {g.age}
+              </p>
+
+              <div className="mt-2 bg-green-600 text-black text-center py-1 rounded-lg font-semibold group-hover:bg-green-600 transition">
+                View Details
+              </div>
+            </div>
           </Link>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* ❌ Empty state */}
+      {generals.length === 0 && (
+        <p className="text-center mt-10 text-gray-400">
+          No generals found...
+        </p>
+      )}
     </div>
   );
 }

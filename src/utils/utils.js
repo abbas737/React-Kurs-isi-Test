@@ -17,5 +17,5 @@ export const refreshTokens = async () => {
     }
   } catch (error) {
     console.error("Token refresh failed:", error);
-  }
+  } 
 };
