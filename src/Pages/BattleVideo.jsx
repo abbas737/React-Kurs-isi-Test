@@ -76,7 +76,7 @@ export default function BattleVideo() {
   <button
     onClick={() => navigate(-1)}
     className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 
-    hover:bg-white/10 hover:text-yellow-400 transition"
+    hover:bg-white/10 hover:text-red-400 transition"
   >
     ← Back
   </button>
@@ -88,10 +88,10 @@ export default function BattleVideo() {
       </div>
       
 
-      {/* 🔥 VS Animation */}
+
     <div className="flex items-center gap-10 text-center">
 
-  {/* Tank 1 */}
+ 
   <div>
     <div className="w-40 h-40 mx-auto overflow-hidden rounded-xl bg-gray-300">
       <img
@@ -102,12 +102,12 @@ export default function BattleVideo() {
     <p className="mt-2">{tank1.name}</p>
   </div>
 
-  {/* VS */}
+
   <span className="text-5xl font-bold text-red-500 animate-pulse">
     VS
   </span>
 
-  {/* Tank 2 */}
+
   <div>
     <div className="w-40 h-40 mx-auto overflow-hidden rounded-xl bg-gray-300">
       <img
@@ -120,14 +120,14 @@ export default function BattleVideo() {
 
 </div>
 
-      {/* 🏆 WINNER */}
+
       {winner && (
         <div className="text-2xl font-bold text-yellow-400 animate-bounce">
           🏆 Winner: {winner.name}
         </div>
       )}
 
-      {/* 🎥 VIDEO */}
+
       <div className="w-full h-[70vh] rounded-xl overflow-hidden">
   {videoUrl ? (
     <iframe

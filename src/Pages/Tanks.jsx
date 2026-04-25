@@ -57,19 +57,19 @@ export default function Tanks() {
         ← Back
       </button>
 
-      {/* 🔥 Title */}
+
       <h2 className="text-4xl font-bold mb-10 text-center tracking-wide">
         Tanks
       </h2>
 
-      {/* 🔍 Search info */}
+
       {search && (
         <p className="text-center mb-6 text-gray-400">
           Searching for: <span className="text-yellow-400">{search}</span>
         </p>
       )}
 
-      {/* 💎 GRID */}
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {tanks.map(tank => (
           <Link
@@ -77,22 +77,22 @@ export default function Tanks() {
             to={`/tank/${tank.id}`}
             className="group bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-103 hover:shadow-yellow-500/30 transition duration-300"
           >
-            {/* 🖼 Image */}
-            <div className="h-48 bg-gray-300 overflow-hidden">
-              {tank.imageUrl ? (
-                <img
-                  src={tank.imageUrl}
-                  alt={tank.name}
-                  className="object-cover h-fit w-fit group-hover:scale-103 transition duration-500"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <span>No Image</span>
-                </div>
-              )}
-            </div>
 
-            {/* 📋 Info */}
+            <div className="h-48 w-full bg-gray-300 overflow-hidden">
+  {tank.imageUrl ? (
+    <img
+      src={tank.imageUrl}
+      alt={tank.name}
+      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+    />
+  ) : (
+    <div className="flex items-center justify-center h-full">
+      <span>No Image</span>
+    </div>
+  )}
+</div>
+
+
             <div className="p-4 flex flex-col gap-2">
               <h3 className="text-lg font-bold">{tank.name}</h3>
 
@@ -100,7 +100,7 @@ export default function Tanks() {
                 {tank.country} • {tank.type}
               </p>
 
-              {/* Button */}
+
               <div className="mt-2 bg-yellow-400 text-black text-center py-1 rounded-lg font-semibold group-hover:bg-yellow-500 transition">
                 View Details
               </div>
@@ -109,14 +109,14 @@ export default function Tanks() {
         ))}
       </div>
 
-      {/* ❌ Empty state */}
+
       {tanks.length === 0 && (
         <p className="text-center mt-10 text-gray-400">
           No tanks found...
         </p>
       )}
 
-      {/* 🔽 Load More */}
+
       {hasMore && tanks.length > 0 && (
         <div className="flex justify-center mt-10">
           <button

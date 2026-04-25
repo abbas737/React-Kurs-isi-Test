@@ -29,17 +29,17 @@ export default function Generals() {
          <button
         onClick={() => navigate(-1)}
         className="absolute top-6 left-6 px-4 py-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 
-        hover:bg-white/10 hover:text-yellow-400 transition"
+        hover:bg-white/10 hover:text-green-400 transition"
       >
         ← Back
       </button>
       
-      {/* 🔥 Title */}
+
       <h2 className="text-4xl font-bold text-center mb-10">
        Generals
       </h2>
 
-      {/* 💎 GRID */}
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {generals.map(g => (
           <Link
@@ -47,22 +47,21 @@ export default function Generals() {
             to={`/generals/${g.id}`}
             className="group bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:scale-103 hover:shadow-green-500/30 transition duration-300"
           >
-            {/* 🖼 Image */}
-            <div className="h-48 bg-gray-300 overflow-hidden">
-              {g.imageUrl ? (
-                <img
-                  src={g.imageUrl}
-                  alt={g.fullName}
-                  className="object-cover w-fit h-fit group-hover:scale-103 transition duration-500"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <span>No Image</span>
-                </div>
-              )}
-            </div>
 
-            {/* 📋 Info */}
+           <div className="h-48 bg-gray-300 overflow-hidden relative">
+  {g.imageUrl ? (
+    <img
+      src={g.imageUrl}
+      alt={g.fullName}
+      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500"
+    />
+  ) : (
+    <div className="flex items-center justify-center h-full text-gray-600">
+      No Image
+    </div>
+  )}
+</div>
+
             <div className="p-4 flex flex-col gap-2">
               <h3 className="text-lg font-bold">
                 {g.fullName}
@@ -80,7 +79,7 @@ export default function Generals() {
         ))}
       </div>
 
-      {/* ❌ Empty state */}
+
       {generals.length === 0 && (
         <p className="text-center mt-10 text-gray-400">
           No generals found...

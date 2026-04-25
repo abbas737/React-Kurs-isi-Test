@@ -84,7 +84,7 @@ const handleDelete = async (id) => {
     const { data } = await api.get(`/General/${general.id}`);
     
 
-    const g = data.data.items;
+    const g = data.data;
 
     setForm({
       fullName: g.fullName ?? "",
@@ -119,21 +119,22 @@ const handleDelete = async (id) => {
   return (
     <div className="min-h-screen bg-slate-900 text-white p-6">
 
-      {/* HEADER */}
+
       <div className="flex justify-between mb-6">
         <h1 className="text-3xl text-yellow-400 font-bold">
           🎖 Admin Generals
         </h1>
 
         <button
-          onClick={() => navigate("/admin")}
-          className="px-4 py-2 bg-white/10 rounded-lg"
-        >
-          ⬅ Back
-        </button>
+        onClick={() => navigate(-1)}
+        className="mb-6 px-5 py-2 rounded-xl bg-white/5 border border-white/10
+        hover:bg-white/10 hover:text-yellow-400 transition"
+      >
+        ← Back
+      </button>
       </div>
 
-      {/* FORM */}
+
       <div className="bg-white/5 p-6 rounded-xl mb-10 grid gap-3">
 
         <input placeholder="Full Name"
@@ -179,7 +180,7 @@ const handleDelete = async (id) => {
         </button>
       </div>
 
-     {/* TABLE */}
+
 <table className="w-full border border-white/10 text-left">
   <thead className="bg-white/10">
     <tr>

@@ -13,10 +13,15 @@ import TankOfficerDetails from "../Pages/TankOfficerDetails";
 import TankVideo from "../Pages/TankVideo";
 import TankBattle from "../Pages/TankBattle";
 import BattleVideo from "../Pages/BattleVideo";
+import AdminTankVideos from "../Pages/AdminTankVideos";
 import AdminPage from "../Pages/AdminPage";
 import AdminTanks from "../Pages/AdminTanks";
 import AdminGenerals from "../Pages/AdminGenerals";
 import AdminTankOfficers from "../Pages/AdminTankOfficers";
+import RequestsPage from "../Pages/RequestsPage";
+import RequestEditPage from "../Pages/RequestEditPage";
+import RequestEditTankPage from "../Pages/RequestEditTankPage";
+import RequestEditTankOfficerPage from "../Pages/RequestEditTankOfficerPage";
 
 const Navigator = () => {
   const accessToken = useTokens(state => state.accessToken);
@@ -70,6 +75,21 @@ const Navigator = () => {
 } />
 
 
+<Route 
+  path="/request/general/:id" 
+  element={accessToken ? <RequestEditPage /> : <Navigate to="/login" />} 
+/>
+
+<Route 
+  path="/request/tank/:id" 
+  element={accessToken ? <RequestEditTankPage /> : <Navigate to="/login" />} 
+/>
+
+<Route 
+  path="/request/tankofficer/:id" 
+  element={accessToken ? <RequestEditTankOfficerPage /> : <Navigate to="/login" />} 
+/>
+
 {/* Admin Panel*/}
 
 <Route
@@ -87,10 +107,16 @@ element={accessToken ? <AdminTanks /> : <Navigate to="/login" />}
 />
 
 <Route 
-path="/admin/officers" 
+path="/admin/officers/:tankId" 
 element={ accessToken ? <AdminTankOfficers /> : <Navigate to="/login"/>} 
 />
 
+<Route 
+  path="/admin/requests" 
+  element={accessToken && role === "Admin" 
+    ? <RequestsPage /> 
+    : <Navigate to="/login" />} 
+/>
 
 
 <Route path="/tank/:id/video" element={
@@ -102,8 +128,24 @@ element={ accessToken ? <AdminTankOfficers /> : <Navigate to="/login"/>}
 
 {/* Tank Video */}
 
-<Route path="/battle" element={accessToken ? <TankBattle />: <Navigate to="/login" replace />} />
-<Route path="/battle/video" element={ accessToken ?<BattleVideo />: <Navigate to="/login" replace />} />
+<Route path="/battle" element={
+  accessToken 
+  ? <TankBattle />: 
+  <Navigate to="/login" replace 
+  />} />
+<Route path="/battle/video" element={ 
+  accessToken 
+  ?<BattleVideo />: 
+  <Navigate to="/login" replace />} />
+
+<Route
+  path="/admin/tank-videos"
+  element={
+    accessToken && role === "Admin"
+      ? <AdminTankVideos />
+      : <Navigate to="/login" />
+  }
+/>
 
   {/* Auth routes */}
   <Route path="/login" element={!accessToken ? <Login /> : <Navigate to="/" replace />} />
