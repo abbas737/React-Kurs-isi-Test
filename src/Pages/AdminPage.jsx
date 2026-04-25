@@ -74,7 +74,7 @@ export default function AdminPage() {
 
 
         <button
-          onClick={() => navigate(`/admin/officers/${2}`)}
+          onClick={() => navigate(`/admin/officers/${1}`)}
           className="group p-8 bg-white/5 border border-white/10 rounded-2xl 
           hover:scale-105 hover:shadow-green-500/30 transition duration-300 backdrop-blur-lg"
         >

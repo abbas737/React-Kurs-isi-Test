@@ -138,46 +138,7 @@ export default function RequestsPage() {
               </span>
             </div>
 
-            {/* GENERAL */}
-            <Section
-              title="General"
-              color="text-blue-400"
-              fields={[
-                { label: "Name", value: r.generalFullName },
-                { label: "BirthDate", value: r.generalBirthDate },
-                { label: "DeathDate", value: r.generalDeathDate },
-                { label: "Biography", value: r.generalBiography },
-                { label: "Description", value: r.generalDescription },
-              ]}
-            />
-
-            {/* TANK */}
-            <Section
-              title="Tank"
-              color="text-green-400"
-              fields={[
-                { label: "Name", value: r.tankName },
-                { label: "Country", value: r.tankCountry },
-                { label: "Type", value: r.tankType },
-                { label: "Year", value: r.tankProductionYear },
-                { label: "Weight", value: r.tankWeight },
-                { label: "Gun", value: r.tankMainGun },
-                { label: "Crew", value: r.tankCrew },
-                { label: "Description", value: r.tankDescription },
-              ]}
-            />
-
-            {/* OFFICER */}
-            <Section
-              title="Officer"
-              color="text-purple-400"
-              fields={[
-                { label: "Name", value: r.officerFullName },
-                { label: "Rank", value: r.officerRank },
-                { label: "Biography", value: r.officerBiography },
-                { label: "Description", value: r.officerDescription },
-              ]}
-            />
+           
 
             <div className="flex gap-3 mt-5">
               <button
