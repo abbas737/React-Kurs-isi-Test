@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../Pages/HomePage";
 import Tanks from "../Pages/Tanks";
-import TankDetails from "../pages/TankDetails.jsx";
+import TankDetails from "../Pages/TankDetails.jsx";
 import NotFound from "../Pages/NotFound";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
