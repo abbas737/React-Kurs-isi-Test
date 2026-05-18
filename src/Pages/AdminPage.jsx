@@ -18,7 +18,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-800 to-black text-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white p-6">
 
 
       <div className="flex justify-between items-center mb-10">
