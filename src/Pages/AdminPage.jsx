@@ -66,7 +66,7 @@ export default function AdminPage() {
             🎖
           </div>
           <h2 className="text-xl font-bold mb-2">Manage Generals</h2>
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             Edit and control generals
           </p>
         </button>
