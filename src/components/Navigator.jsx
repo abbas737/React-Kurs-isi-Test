@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../Pages/HomePage";
 import Tanks from "../Pages/Tanks";
-import TankDetails from "../pages/TankDetails";
+import TankDetails from "../Pages/TankDetails.jsx";
 import NotFound from "../Pages/NotFound";
 import Login from "../Pages/Login";
-import Register from "../pages/Register";
+import Register from "../Pages/Register";
 import Generals from "../Pages/Generals";
 import GeneralDetails from "../Pages/GeneralDetails";
 import { useTokens } from "../stores/TokenStore";

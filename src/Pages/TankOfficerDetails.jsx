@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 import Loading from "../components/Loading";
 import { useDarkmode } from "../stores/DarkModeStore";
+import TankDetails from "../pages/TankDetails.jsx";
 
 export default function TankOfficerDetails() {
   const { id } = useParams();
