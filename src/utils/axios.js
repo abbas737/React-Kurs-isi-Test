@@ -3,7 +3,7 @@ import { useTokens } from "../stores/TokenStore.jsx";
 import { refreshTokens } from "./utils.js";
 
 const api = axios.create({
-    baseURL: "http://13.61.32.34:8080/api",
+    baseURL: "http://16.171.197.175:8080/api",
     headers: { "Content-Type": "application/json" },
 });
 
