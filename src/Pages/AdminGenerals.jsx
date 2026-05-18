@@ -181,7 +181,7 @@ const handleDelete = async (id) => {
       </div>
 
 
-<table className="w-full border border-white/10 text-left">
+<table className="w-full border border-white/9 text-left">
   <thead className="bg-white/10">
     <tr>
       <th className="p-2">Name</th>
