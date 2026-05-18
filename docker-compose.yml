@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql_db
+    environment:
+      SA_PASSWORD: "YourStrong123!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  api:
+    image: abbas737/aspnet-kurs-isi:latest
+    container_name: aspnet_api
+    environment:
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__DefaultConnectionString: "Server=db;Database=TanksDB;User=sa;Password=YourStrong123!;TrustServerCertificate=True"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  web:
+    image: abbas737/react-kurs-isi:latest
+    container_name: react_app
+    ports:
+      - "80:80"
