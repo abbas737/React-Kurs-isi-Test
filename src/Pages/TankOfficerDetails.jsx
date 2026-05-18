@@ -24,7 +24,7 @@ export default function TankOfficerDetails() {
     <div className={`min-h-screen px-6 py-10 ${
       isDarkmodeActive
         ? "bg-gray-100 text-black"
-        : "bg-gradient-to-br from-slate-800 via-slate-800 to-black text-white"
+        : "bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white"
     }`}>
 
       <button
