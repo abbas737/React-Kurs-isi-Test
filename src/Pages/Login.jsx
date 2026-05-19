@@ -88,9 +88,9 @@ setRole(role);
 
 
         <p className="text-center text-sm text-gray-400">
-          Don’t have an account?{" "}
+          Don’t have an account{" "}
           <Link to="/register" className="text-yellow-400 hover:underline">
-            Register
+            Regist
           </Link>
         </p>
 
