@@ -55,7 +55,7 @@ setRole(role);
       shadow-2xl flex flex-col gap-5">
 
         <h2 className="text-3xl font-bold text-center text-yellow-400">
-          Tank Wiki Logi
+          Tank Wiki Login
         </h2>
 
         <input
