@@ -35,9 +35,5 @@ jobs:
 
           script: |
             docker pull abbas737/react-kurs-isi:latest
-            docker stop react-app || true
-            docker rm react-app || true
-            docker run -d \
-              --name react-app \
-              -p 80:80 \
-              abbas737/react-kurs-isi:latest
+            docker compose down || true
+            docker compose up -d

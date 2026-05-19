@@ -27,3 +27,5 @@ services:
     container_name: react_app
     ports:
       - "8081:80"
+    depends_on:
+      - api
