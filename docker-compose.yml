@@ -26,4 +26,4 @@ services:
     image: abbas737/react-kurs-isi:latest
     container_name: react_app
     ports:
-      - "80:80"
+      - "8081:8080"
